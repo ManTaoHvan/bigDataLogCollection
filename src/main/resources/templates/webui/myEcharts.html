@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>可视化</title>
+
+    <!-- 引入 echarts.js 注意 这里的路径文件放在static路径下  -->
+    <script src="/echarts/echarts.js"></script>
+    <!--引入主题-->
+    <script src="/echarts/vintage.js"></script>
+    <script src="/echarts/myMacarons.js"></script>
+    <!--数据库查询-->
+    <script src="/echarts/jquery.min.js"></script>
+
+    <style>
+        .box {
+            display: flex; /*盒子内“子盒子”悬浮并列*/
+            justify-content: center; /*盒子内“子盒子”的x轴盒子居中*/
+            align-items: center; /*盒子内“子盒子”的y轴盒子居中*/
+            border: 0px solid red; /*边框*/
+            margin: 28px auto; /*外部大盒子左右轴居中，距离上下40px */
+            width: 99%; /*宽占浏览器窗口的99%*/
+            height: 280px;
+        }
+
+        .box1 {
+            /*background-color: red;*/
+            margin: 4px; /*外边距*/
+            width: 445px;  /* ★★注意盒子的宽和搞最好不要设置这种百分比的格式40%,因为放大或缩小会很乱*/
+            height: 270px;
+            border: 1px solid blue; /*边框*/
+        }
+
+        .box2 {
+            /*background-color: red;*/
+            margin: 4px;
+            width: 500px;
+            height: 270px;
+            border: 1px solid blue;
+        }
+
+        .box3 {
+            /*background-color: red;*/
+            margin: 4px;
+            width: 445px;
+            height: 270px;
+            border: 1px solid blue;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- 第一行的盒子布局 -->
+<div class="box" id="idinit-1">
+    <div class="box1" id="id1" >第1个盒子</div>
+    <div class="box2" id="id2" >第2个盒子</div>
+    <div class="box3" id="id3" >第3个盒子</div>
+</div>
+
+<!-- 第二行的盒子布局 -->
+<div class="box" id="idinit-2">
+    <div class="box1" id="id4" >第4个盒子</div>
+    <div class="box2" id="id5" >第5个盒子</div>
+    <div class="box3" id="id6" >第6个盒子</div>
+</div>
+
+<!--柱状图-可视化-->
+<script type="text/javascript">
+
+    // 注释加密 
+    var myChart1 = echarts.init(document.getElementById('id1'), 'myMacarons'); // 注释加密 
+
+    // 注释加密 
+    var my_x=[], my_value=[];
+    function TestAjax(){
+        $.ajax({
+            type: "get",
+            async: false, // 注释加密 
+            url: "/mysql/getData/hmt_visual_sysTypeGroup", // 注释加密 
+            data: {},//发送给数据库的数据
+            dataType: "json", // 注释加密 
+            success: function(result) {
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        my_x.push(result[i].chinese); // 注释加密 
+                        my_value.push(result[i].myvalue);
+                    }
+                }
+            }
+        })
+        return my_x, my_value;
+    }
+
+    // 注释加密 
+    TestAjax();
+
+    // 注释加密 
+    var option1 = {
+
+        // 注释加密 
+        title: {
+            text: '近7天采集日志统计',
+            top:'2px',
+            left:'18px',
+            textStyle:{
+                fontSize:14, // 注释加密 
+                fontStyle:'italic', // 注释加密 
+            }
+        },
+
+        // 注释加密 
+        legend: {
+            data: ['大小MB'],
+            right:'1px', // 注释加密 
+            top:'2px'
+        },
+
+        // 注释加密 
+        tooltip: {
+
+        },
+
+        // 注释加密 
+        grid: {
+            left: '3.5%', // 注释加密 
+            right: '1%', // 注释加密 
+            bottom: '8%',
+            top: '16%',
+            containLabel: true // 注释加密 
+        },
+
+
+        // 注释加密 
+        xAxis: {
+            type: 'category', // 注释加密 
+            name:'设备类型' ,// 设置y轴的名称
+            nameGap: 23,  // 注释加密 
+            nameLocation: "middle", // 注释加密 
+            nameTextStyle:{
+                fontSize:11,
+            },
+            data: my_x, // 注释加密 
+            axisLabel: { // 注释加密 
+                interval: 0, // 注释加密 
+                textStyle: {
+                    fontSize : 10.5
+                }
+            }
+            // 注释加密 
+        },
+
+        // 注释加密 
+        yAxis: {
+            type: 'value',////该轴做为值轴
+            name:'数\n值\n大\n小\n',  // 注释加密 
+            nameGap: 41,
+            nameLocation: "middle", // 注释加密 
+            nameRotate:0,
+            nameTextStyle:{
+                fontSize:11,
+            },
+            axisLabel: {
+                interval: 0,
+                textStyle: {
+                    fontSize : 10.5
+                }
+            }
+            // 注释加密 
+        },
+
+        // 注释加密 
+        series: [{
+            name: '大小MB', // 注释加密 
+            type: 'bar', // 注释加密 
+            data: my_value ,//[10, 20, 36, 6, 10, 20], // 注释加密 
+            barWidth: 24,//柱图宽度
+
+            // 注释加密 
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: true, // 注释加密 
+                        position: "top", // 注释加密 
+                        textStyle: {
+                            fontSize: 10,
+                        },
+                    },
+                }
+            }
+
+        }]
+    };
+
+    // 注释加密 
+    myChart1.setOption(option1);
+
+</script>
+
+<!--条形图(其实属于柱状图的类别)-可视化-->
+<script type="text/javascript">
+
+    // 注释加密 
+    var myChart2 = echarts.init(document.getElementById('id2'), 'myMacarons'); // 注释加密 
+
+    // 注释加密 
+    var my_x=[], my_value=[];
+    function TestAjax(){
+        $.ajax({
+            type: "get",
+            async: false, // 注释加密 
+            url: "/mysql/getData/hmt_visual_departGroup", // 注释加密 
+            data: {},//发送给数据库的数据
+            dataType: "json", // 注释加密 
+            success: function(result) {
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        my_x.push(result[i].chinese); // 注释加密 
+                        my_value.push(result[i].myvalue);
+                    }
+                }
+            }
+        })
+        return my_x, my_value;
+    }
+
+    // 注释加密 
+    TestAjax();
+
+    // 注释加密 
+    var option2 = {
+
+        // 注释加密 
+        title: {
+            text: '近7天采集日志统计',
+            top:'2px',
+            left:'18px',
+            textStyle:{
+                fontSize:14, // 注释加密 
+                fontStyle:'italic', // 注释加密 
+            }
+        },
+
+        // 注释加密 
+        legend: {
+            data: ['大小MB'],
+            right:'1px', // 注释加密 
+            top:'2px'
+        },
+
+        // 注释加密 
+        tooltip: {
+
+        },
+
+        // 注释加密 
+        grid: {
+            left: '2%', // 注释加密 
+            right: '7%', // 注释加密 
+            bottom: '8%',
+            top: '16%',
+            containLabel: true // 注释加密 
+        },
+
+
+        // 注释加密 
+        yAxis: {
+            type: 'category', // 注释加密 
+            name:'各\n部\n门' ,// 设置y轴的名称
+            nameGap: 100,  // 注释加密 
+            nameLocation: "middle", // 注释加密 
+            nameRotate:0,
+            nameTextStyle:{
+                fontSize:11,
+            },
+            data: my_x,//["1月", "2月", "3月", "4月", "5月", "6月"],  // 注释加密 
+            axisLabel: { // 注释加密 
+                interval: 0, // 注释加密 
+                textStyle: {
+                    fontSize : 10.5
+                }
+            }
+            // 注释加密 
+        },
+
+        // 注释加密 
+        xAxis: {
+            type: 'value',//该轴作为值轴
+            name:'数值大小',  // 注释加密 
+            nameGap: 24,
+            nameLocation: "middle", // 注释加密 
+            nameTextStyle:{
+                fontSize:11,
+            },
+            axisLabel: {
+                interval: 0,
+                textStyle: {
+                    fontSize : 10.5
+                }
+            },
+            // 注释加密 
+        },
+
+        // 注释加密 
+        series: [{
+            name: '大小MB', // 注释加密 
+            type: 'bar', // 注释加密 
+            data: my_value,//[10, 20, 36, 6, 10, 20], // 注释加密 
+            barWidth: 11,//柱图宽度
+
+            // 注释加密 
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: true, // 注释加密 
+                        position: "right", // 注释加密 
+                        textStyle: {
+                            fontSize: 10,
+                        },
+                    },
+                }
+            }
+
+        }]
+    };
+
+    // 注释加密 
+    myChart2.setOption(option2);
+
+</script>
+
+<!--折线图-可视化-->
+<script type="text/javascript">
+
+    // 注释加密 
+    var myChart3 = echarts.init(document.getElementById('id3'), 'myMacarons'); // 注释加密 
+
+
+    // 注释加密 
+    var my_x=[], my_value=[];
+    function TestAjax(){
+        $.ajax({
+            type: "get",
+            async: false, // 注释加密 
+            url: "/mysql/getData/hmt_visual_dateGroup", // 注释加密 
+            data: {},//发送给数据库的数据
+            dataType: "json", // 注释加密 
+            success: function(result) {
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        my_x.push(result[i].chinese); // 注释加密 
+                        my_value.push(result[i].myvalue);
+                    }
+                }
+            }
+        })
+        return my_x, my_value;
+    }
+
+    // 注释加密 
+    TestAjax();
+
+
+    // 注释加密 
+    var option3 = {
+
+        // 注释加密 
+        title: {
+            text: '近7天采集日志统计',
+            top:'2px',
+            left:'18px',
+            textStyle:{
+                fontSize:14, // 注释加密 
+                fontStyle:'italic', // 注释加密 
+            }
+        },
+
+        // 注释加密 
+        legend: {
+            data: ['大小MB'],
+            right:'1px', // 注释加密 
+            top:'2px'
+        },
+
+        // 注释加密 
+        tooltip: {
+
+        },
+
+        // 注释加密 
+        grid: {
+            left: '4%', // 注释加密 
+            right: '2%', // 注释加密 
+            bottom: '8%',
+            top: '16%',
+            containLabel: true // 注释加密 
+        },
+
+
+        // 注释加密 
+        xAxis: {
+            type: 'category', // 注释加密 
+            name:'时间(月/号)' ,// 设置y轴的名称
+            nameGap: 23,  // 注释加密 
+            nameLocation: "middle", // 注释加密 
+            nameTextStyle:{
+                fontSize:11,
+            },
+            data: my_x,//["1月", "2月", "3月", "4月", "5月", "6月"],  // 注释加密 
+            axisLabel: { // 注释加密 
+                interval: 0, // 注释加密 
+                textStyle: {
+                    fontSize : 10.5
+                }
+            }
+            // 注释加密 
+        },
+
+        // 注释加密 
+        yAxis: {
+            type: 'value',////该轴做为值轴
+            name:'数\n值\n大\n小\n',  // 注释加密 
+            nameGap: 42,
+            nameLocation: "middle", // 注释加密 
+            nameRotate:0,
+            nameTextStyle:{
+                fontSize:11,
+            },
+            axisLabel: {
+                interval: 0,
+                textStyle: {
+                    fontSize : 10.5
+                }
+            }
+            // 注释加密 
+        },
+
+        // 注释加密 
+        series: [{
+            name: '大小MB', // 注释加密 
+            type: 'line', // 注释加密 
+            data: my_value,//[10, 20, 36, 6, 10, 20], // 注释加密 
+            barWidth: 25,//柱图宽度
+            areaStyle: { }, // 注释加密 
+            // 注释加密 
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: true, // 注释加密 
+                        position: "top", // 注释加密 
+                        textStyle: {
+                            fontSize: 10,
+                        },
+                    },
+                }
+            }
+
+        }]
+    };
+
+    // 注释加密 
+    myChart3.setOption(option3);
+
+</script>
+
+<!--得分环1-可视化-->
+<script type="text/javascript">
+
+    // 注释加密 
+    var myChart4 = echarts.init(document.getElementById('id4'), 'myMacarons'); // 注释加密 
+
+    // 注释加密 
+    var my_x=[], my_value=[];
+    function TestAjax(){
+        $.ajax({
+            type: "get",
+            async: false, // 注释加密 
+            url: "/mysql/getData/hmt_card_fipCount", // 注释加密 
+            data: {},//发送给数据库的数据
+            dataType: "json", // 注释加密 
+            success: function(result) {
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        my_x.push(result[i].chinese); // 注释加密 
+                        my_value.push(result[i].myvalue);
+                    }
+                }
+            }
+        })
+        return my_x, my_value;
+    }
+
+    // 注释加密 
+    TestAjax();
+
+    // 注释加密 
+    const gaugeData1 = [
+        {
+            value: my_value,//80, // 注释加密 
+            name: my_x[0],//'12',//my_x.get(0).toString(),//'12',//'总分数',   // 注释加密 
+            title: {
+                offsetCenter: ['0%', '-17%'] // 注释加密 
+            },
+            detail: {
+                valueAnimation: true,
+                offsetCenter: ['0%', '12%'] // 注释加密 
+            }
+        }
+
+    ];
+
+    // 注释加密 
+    var option4 = {
+        series: [
+            {
+                type: 'gauge',
+                startAngle: 90, // 注释加密 
+                endAngle: -270,// 设置圆圈从哪个开始角度 渲染颜色
+                pointer: {
+                    show: false // 注释加密 
+                },
+                progress: { // 注释加密 
+                    show: true,
+                    overlap: false,
+                    roundCap: true,
+                    clip: false,
+                    itemStyle: {
+                        borderWidth: 1,
+                        borderColor: '#464646'
+                    }
+                },
+                axisLine: { // 注释加密 
+                    lineStyle: {
+                        width: 20
+                    }
+                },
+                splitLine: { // 注释加密 
+                    show: false,
+                    distance: 0,
+                    length: 10
+                },
+                axisTick: {  // 注释加密 
+                    show: false
+                },
+                axisLabel: {  // 注释加密 
+                    show: false,
+                    distance: 50
+                },
+
+                data: gaugeData1, // 注释加密 
+
+                title: { // 注释加密 
+                    fontSize: 20
+                },
+
+                detail: { // 注释加密 
+                    fontSize: 28,
+                    color: 'inherit',
+                }
+            }
+        ]
+    };
+
+    // 注释加密 
+    myChart4.setOption(option4);
+
+</script>
+
+<!--得分环2-可视化-->
+<script type="text/javascript">
+
+    // 注释加密 
+    var myChart5 = echarts.init(document.getElementById('id5'), 'myMacarons'); // 注释加密 
+
+    // 注释加密 
+    var my_x=[], my_value=[];
+    function TestAjax(){
+        $.ajax({
+            type: "get",
+            async: false, // 注释加密 
+            url: "/mysql/getData/hmt_card_sysTypeCount", // 注释加密 
+            data: {},//发送给数据库的数据
+            dataType: "json", // 注释加密 
+            success: function(result) {
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        my_x.push(result[i].chinese); // 注释加密 
+                        my_value.push(result[i].myvalue);
+                    }
+                }
+            }
+        })
+        return my_x, my_value;
+    }
+
+    // 注释加密 
+    TestAjax();
+
+    // 注释加密 
+    const gaugeData2 = [
+        {
+            value: my_value,//80, // 注释加密 
+            name: my_x[0],//'12',//my_x.get(0).toString(),//'12',//'总分数',   // 注释加密 
+            title: {
+                offsetCenter: ['0%', '-17%'] // 注释加密 
+            },
+            detail: {
+                valueAnimation: true,
+                offsetCenter: ['0%', '12%'] // 注释加密 
+            }
+        }
+
+    ];
+
+    // 注释加密 
+    var option5 = {
+        series: [
+            {
+                type: 'gauge',
+                startAngle: 90, // 注释加密 
+                endAngle: -270,// 设置圆圈从哪个开始角度 渲染颜色
+                pointer: {
+                    show: false // 注释加密 
+                },
+                progress: { // 注释加密 
+                    show: true,
+                    overlap: false,
+                    roundCap: true,
+                    clip: false,
+                    itemStyle: {
+                        borderWidth: 1,
+                        borderColor: '#464646'
+                    }
+                },
+                axisLine: { // 注释加密 
+                    lineStyle: {
+                        width: 20
+                    }
+                },
+                splitLine: { // 注释加密 
+                    show: false,
+                    distance: 0,
+                    length: 10
+                },
+                axisTick: {  // 注释加密 
+                    show: false
+                },
+                axisLabel: {  // 注释加密 
+                    show: false,
+                    distance: 50
+                },
+
+                data: gaugeData2, // 注释加密 
+
+                title: { // 注释加密 
+                    fontSize: 20
+                },
+
+                detail: { // 注释加密 
+                    fontSize: 28,
+                    color: 'inherit',
+                }
+            }
+        ]
+    };
+
+    // 注释加密 
+    myChart5.setOption(option5);
+
+</script>
+
+<!--得分环3-可视化-->
+<script type="text/javascript">
+
+    // 注释加密 
+    var myChart6 = echarts.init(document.getElementById('id6'), 'myMacarons'); // 注释加密 
+
+    // 注释加密 
+    var my_x=[], my_value=[];
+    function TestAjax(){
+        $.ajax({
+            type: "get",
+            async: false, // 注释加密 
+            url: "/mysql/getData/hmt_card_filesizeSum", // 注释加密 
+            data: {},//发送给数据库的数据
+            dataType: "json", // 注释加密 
+            success: function(result) {
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        my_x.push(result[i].chinese); // 注释加密 
+                        my_value.push(result[i].myvalue);
+                    }
+                }
+            }
+        })
+        return my_x, my_value;
+    }
+
+    // 注释加密 
+    TestAjax();
+
+    // 注释加密 
+    const gaugeData3 = [
+        {
+            value: my_value,//80, // 注释加密 
+            name: my_x[0],//'12',//my_x.get(0).toString(),//'12',//'总分数',   // 注释加密 
+            title: {
+                offsetCenter: ['0%', '-17%'] // 注释加密 
+            },
+            detail: {
+                valueAnimation: true,
+                offsetCenter: ['0%', '12%'] // 注释加密 
+            }
+        }
+
+    ];
+
+    // 注释加密 
+    var option6 = {
+        series: [
+            {
+                type: 'gauge',
+                startAngle: 90, // 注释加密 
+                endAngle: -270,// 设置圆圈从哪个开始角度 渲染颜色
+                pointer: {
+                    show: false // 注释加密 
+                },
+                progress: { // 注释加密 
+                    show: true,
+                    overlap: false,
+                    roundCap: true,
+                    clip: false,
+                    itemStyle: {
+                        borderWidth: 1,
+                        borderColor: '#464646'
+                    }
+                },
+                axisLine: { // 注释加密 
+                    lineStyle: {
+                        width: 20
+                    }
+                },
+                splitLine: { // 注释加密 
+                    show: false,
+                    distance: 0,
+                    length: 10
+                },
+                axisTick: {  // 注释加密 
+                    show: false
+                },
+                axisLabel: {  // 注释加密 
+                    show: false,
+                    distance: 50
+                },
+
+                data: gaugeData3, // 注释加密 
+
+                title: { // 注释加密 
+                    fontSize: 20
+                },
+
+                detail: { // 注释加密 
+                    fontSize: 28,
+                    color: 'inherit',
+                }
+            }
+        ]
+    };
+
+    // 注释加密 
+    myChart6.setOption(option6);
+
+</script>
+
+
+
+</body>
+
+</html>

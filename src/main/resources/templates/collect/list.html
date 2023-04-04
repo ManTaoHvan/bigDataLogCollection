@@ -1,0 +1,91 @@
+<#include "/common/layout.html">
+<@header>
+</@header>
+<@body>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      <small>日志管理 > 日志清单</small>
+    </h1>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <!-- Your Page Content Here -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+         <form action="${request.contextPath}/collect/list/1" method="post" class="form-inline">
+          <div class="box-header">
+             <div class="input-group">
+               <input type="text" name="search" value="${search!}" id="search" class="form-control" placeholder="部门">
+            </div>
+              <div class="input-group">
+                  <input type="text" name="ip" value="${ip!}" id="ip" class="form-control" placeholder="ip">
+                  <div class="input-group-btn">
+                      <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                      <a href="${request.contextPath}/collect/list/1" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+                  </div>
+              </div>
+              <div class="input-group pull-right">
+                  <button type="button" class="btn btn-primary btn-flat" onclick="download();">导出</button>
+              </div>
+          </div><!-- /.box-header -->
+          </form>
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+              <tr>
+                <th >行号</th>
+                <th>部门名称</th>
+                <th>日志IP</th>
+                  <th>纳管IPS</th>
+                <th>项目名称</th>
+                  <th>日志行数</th>
+                  <th>设备类型</th>
+                  <th>采集器IP</th>
+                <th>时间</th>
+                  <th >详情</th>
+              </tr>
+              <#list pageData.getRecords() as log>
+              	  <tr>
+	                <td>${((pageData.current-1)*pageData.size +log_index+1)!}</td>
+	                <td>${(log.departName)!}</td>
+	                <td>${(log.fip)!'--'}</td>
+                      <td>${(log.ips)!'--'}</td>
+                      <td>${(log.proName)!}</td>
+                      <td>${(log.fnum)!}</td>
+                      <td>${(log.sysType)!'--'}</td>
+	                <td>${(log.cip)!'--'}</td>
+                      <td>${(log.createTime)!'--'}</td>
+                      <td><a class="btn btn-xs" href="${request.contextPath}/collect/detail/1?ip=${(log.fip)!}">详情</a></td>
+	              </tr>
+              </#list>
+            </table>
+          </div><!-- /.box-body -->
+          <div class="box-footer row">
+            <div class="col-md-6">
+         	  <#include "/common/paginateBar.html" />
+	  		  <@paginate pageData=pageData actionUrl="${request.contextPath}/collect/list/" urlParas="?search=${search!}&ip=${ip!}"  />
+            </div>
+            <div class="col-md-6 pull-left">
+	             <#include "/common/paginate.html" />
+	  			 <@paginate currentPage=pageData.getCurrent() totalPage=(pageData.total/pageData.size)?ceiling actionUrl="${request.contextPath}/collect/list/" urlParas="?search=${search!}&ip=${ip!}&pageSize=${pageSize!}"  />
+            </div>
+          </div>
+        </div><!-- /.box -->
+      </div>
+    </div>
+  </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+</@body>
+<@footer>
+<script>
+
+    function download() {
+        var search = $("#search").val();
+        var ip = $("#ip").val();
+        window.open("${request.contextPath}/collect/down?search="+search+"&ip="+ip)
+    }
+
+</script>
+</@footer>

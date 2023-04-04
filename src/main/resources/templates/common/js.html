@@ -1,0 +1,71 @@
+
+<!-- 确认提示组件 -->
+<div id="confirm-modal" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" style="display: none;">
+  <div class="modal-body">
+    <p>您确定要删除该条记录吗?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default">取消</button>
+    <button type="button"  class="btn btn-primary del">删除</button>
+  </div>
+</div>
+
+<!-- REQUIRED JS SCRIPTS -->
+<!-- jQuery 2.1.4 -->
+<script src="${request.contextPath}/plugins/jQuery/jQuery-3.4.1.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="${request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="${request.contextPath}/plugins/iCheck/icheck.min.js"></script>
+<!-- nice-validator-1.0.8 -->
+<script src="${request.contextPath}/plugins/nice-validator-1.0.8/jquery.validator.js?local=zh-CN"></script>
+<!--jquery-confirm  -->
+<script src="${request.contextPath}/plugins/jquery-confirm/jquery-confirm.min.js"></script>
+<!-- Select2 -->
+<script src="${request.contextPath}/plugins/select2/select2.full.min.js"></script>
+<!-- date -->
+<script src="${request.contextPath}/plugins/daterangepicker/moment.min.js"></script>
+<script src="${request.contextPath}/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- jquery.cookie -->
+<script src="${request.contextPath}/plugins/jquery.cookie.js"></script>
+
+<!-- xlsx -->
+<script src="${request.contextPath}/plugins/jquery.table2excel.js"></script>
+
+<!-- AdminLTE App -->
+<script src="${request.contextPath}/app/js/app.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="${request.contextPath}/app/js/demo.js"></script>
+<!-- 自定义系统初始化话JS -->
+<script src="${request.contextPath}/app/js/init.js"></script>
+<!--echart.js-->
+<script type="text/javascript" src="${request.contextPath}/plugins/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="${request.contextPath}/plugins/echarts/echarts-gl.js"></script>
+<script type="text/javascript" src="${request.contextPath}/plugins/echarts/ecStat.min.js"></script>
+<script type="text/javascript" src="${request.contextPath}/plugins/echarts/dataTool.min.js"></script>
+<script type="text/javascript" src="${request.contextPath}/plugins/echarts/simplex.js"></script>
+
+<script src="${request.contextPath}/plugins/layui/layui.js" charset="utf-8"></script>
+<script src="${request.contextPath}/app/js/x-layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+ 	
+$(function(){
+ // 注释加密 
+	$(".select2").select2();
+ // 注释加密 
+	$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+       checkboxClass: 'icheckbox_minimal-blue',
+       radioClass: 'iradio_minimal-blue'
+    });
+});
+</script>
+<script type="text/javascript">
+ layui.config({
+	version:true,
+	debug:true,
+   	base: '${request.contextPath}/app/js/modules/'
+ }).use('xform'); // 注释加密 
+
+</script>
+
+

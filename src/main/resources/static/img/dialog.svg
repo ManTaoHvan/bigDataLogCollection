@@ -1,0 +1,49 @@
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="43px" viewBox="0 0 64.1 43.2" style="enable-background:new 0 0 64.1 43.2;" xml:space="preserve">
+<g>
+	<g>
+		<defs>
+			<polygon id="SVGID_1_" points="0,43.2 64.1,43.2 64.1,0 0,0 0,43.2 			"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<path style="clip-path:url(#SVGID_2_);fill-rule:evenodd;clip-rule:evenodd;fill:#70AD47;" d="M19.1,42.4l-2.3-7
+			c-14.9-5-20.2-16.2-11.7-25s27.3-12,42.2-7c14.9,5,20.2,16.2,11.7,25c-6.2,6.5-18.5,10.2-31,9.2L19.1,42.4z"/>
+		<path style="clip-path:url(#SVGID_2_);fill:none;stroke:#2F528F;stroke-width:0.7207;stroke-miterlimit:8;" d="M19.1,42.4l-2.3-7
+			c-14.9-5-20.2-16.2-11.7-25s27.3-12,42.2-7c14.9,5,20.2,16.2,11.7,25c-6.2,6.5-18.5,10.2-31,9.2L19.1,42.4z"/>
+		<g style="clip-path:url(#SVGID_2_);">
+			<defs>
+				<polygon id="SVGID_3_" points="0,43.2 64.1,43.2 64.1,0 0,0 0,43.2 				"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+			</clipPath>
+			<g style="clip-path:url(#SVGID_4_);">
+				<defs>
+					<rect id="SVGID_5_" width="64.1" height="43.2"/>
+				</defs>
+				<clipPath id="SVGID_6_">
+					<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
+				</clipPath>
+			</g>
+			<g style="clip-path:url(#SVGID_4_);">
+				<defs>
+					<polygon id="SVGID_7_" points="0,43.2 64.1,43.2 64.1,0 0,0 0,43.2 					"/>
+				</defs>
+				<clipPath id="SVGID_8_">
+					<use xlink:href="#SVGID_7_"  style="overflow:visible;"/>
+				</clipPath>
+				<g style="clip-path:url(#SVGID_8_);">
+					<defs>
+						<rect id="SVGID_9_" width="64.1" height="43.2"/>
+					</defs>
+					<clipPath id="SVGID_10_">
+						<use xlink:href="#SVGID_9_"  style="overflow:visible;"/>
+					</clipPath>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

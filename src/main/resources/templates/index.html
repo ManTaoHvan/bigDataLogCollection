@@ -1,0 +1,241 @@
+<#include "/common/layout.html">
+<@header>
+</@header>
+<style type="text/css">
+    .btn-group .active{border:1px solid #d2d2d2;background-color: #1c94c4}
+</style>
+<@body>
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      	主面板
+      <small>显示系统信息</small>
+    </h1>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+	<div class="row">
+	  <div class="col-lg-2 col-xs-4" style="width: 20%">
+         <!-- small box -->
+         <div class="small-box  bg-yellow">
+           <div class="inner" style="cursor: pointer">
+             <h4 id="allTotal">${totalNum!'0'}</h4>
+             <p>总采集数</p>
+           </div>
+           <div class="icon">
+             <i class="fa fa-search"></i>
+           </div>
+           <!--<a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>-->
+         </div>
+       </div><!-- ./col -->
+       
+       <div class="col-lg-2 col-xs-4" style="width: 20%">
+         <!-- small box -->
+         <div class="small-box bg-aqua">
+           <div class="inner" style="cursor: pointer">
+             <h4 id="yearTotal">${totalPro!'0'}</h4>
+             <p>总系统数</p>
+           </div>
+           <div class="icon">
+             <i class="fa fa-list-alt"></i>
+           </div>
+           <!--<a href="#" class="small-box-footer" >详细信息 <i class="fa fa-arrow-circle-right"></i></a>-->
+         </div>
+       </div><!-- ./col -->
+       
+         <div class="col-lg-2 col-xs-4" style="width: 20%">
+         <!-- small box -->
+         <div class="small-box  bg-red">
+           <div class="inner" style="cursor: pointer">
+             <h4 id="monthTotal">0</h4>
+             <p>总离线数</p>
+           </div>
+           <div class="icon">
+             <i class="fa fa-bullseye"></i>
+           </div>
+           <!--<a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>-->
+         </div>
+       </div><!-- ./col -->
+
+        <div class="col-lg-2 col-xs-4" style="width: 20%">
+            <!-- small box -->
+            <div class="small-box  bg-orange">
+                <div class="inner" style="cursor: pointer">
+                    <h4 id="dayTotal">0</h4>
+                    <p>总未纳入SOC数</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-barcode"></i>
+                </div>
+                <!--<a href="#" class="small-box-footer" onclick="download(day);">详细信息 <i class="fa fa-arrow-circle-right"></i></a>-->
+            </div>
+        </div><!-- ./col -->
+       
+       <div class="col-lg-2 col-xs-4" style="width: 20%">
+         <!-- small box -->
+         <div class="small-box bg-green">
+           <div class="inner" style="cursor: pointer">
+             <h4 id="allPpv">${(totalLine?string)!'0'}</h4>
+             <p>总行数</p>
+           </div>
+           <div class="icon">
+             <i class="fa fa-podcast"></i>
+           </div>
+           <!--<a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>-->
+         </div>
+       </div><!-- ./col -->
+       <!-- fix for small devices only -->
+       <div class="clearfix visible-sm-block"></div>
+     </div><!-- /.row -->
+     
+     <!--<div class="row">
+     	<div class="col-md-6">
+     		<div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">电站状态</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                     <div id="station_index" style="height: 300px"></div>
+                  </div>
+                </div>&lt;!&ndash; /.box-body &ndash;&gt;
+              </div>&lt;!&ndash; /.box &ndash;&gt;
+     	</div>
+
+         <div class="col-md-6">
+             <div class="box box-info">
+                 <div class="box-header with-border">
+                     <h3 class="box-title">逆变器状态</h3>
+                     <div class="box-tools pull-right">
+                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                     </div>
+                 </div>
+                 <div class="box-body">
+                     <div class="chart">
+                         <div id="inverter_index" style="height: 300px"></div>
+                     </div>
+                 </div>&lt;!&ndash; /.box-body &ndash;&gt;
+             </div>&lt;!&ndash; /.box &ndash;&gt;
+         </div>
+
+         <div class="col-md-6">
+             <div class="box box-info">
+                 <div class="box-header with-border">
+                     <h3 class="box-title">发电量TOP10</h3>
+                     <div class="box-tools pull-right">
+                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                     </div>
+                 </div>
+                 <div class="box-body">
+                     <div class="chart">
+                         <div id="top_10" style="height: 300px"></div>
+                     </div>
+                 </div>&lt;!&ndash; /.box-body &ndash;&gt;
+             </div>&lt;!&ndash; /.box &ndash;&gt;
+         </div>
+
+         <div class="col-md-6">
+             <div class="box box-info">
+                 <div class="box-header with-border">
+                     <h3 class="box-title">发电量趋势</h3>
+                     <div class="btn-group">
+                         <button id="day" name="trend" type="button" class="btn btn-xs btn-white active">近24时</button>
+                         <button id="month" name="trend" type="button" class="btn btn-xs btn-white">近30日</button>
+                         <button id="year" name="trend" type="button" class="btn btn-xs btn-white">近12月</button>
+                     </div>
+                     <div class="box-tools pull-right">
+                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                     </div>
+                 </div>
+                 <div class="box-body">
+                     <div class="chart">
+                         <div id="trend" style="height: 300px"></div>
+                     </div>
+                 </div>&lt;!&ndash; /.box-body &ndash;&gt;
+             </div>&lt;!&ndash; /.box &ndash;&gt;
+         </div>
+
+         <div class="col-md-12">
+             <div class="box box-info">
+                 <div class="box-header with-border">
+                     <h3 class="box-title">气象站</h3>
+                     <div class="btn-group">
+                         <button id="station1" name="station" type="button" class="btn btn-xs btn-white active">南塘</button>
+                         <button id="station2" name="station" type="button" class="btn btn-xs btn-white">韩坊</button>
+                         <button id="station3" name="station" type="button" class="btn btn-xs btn-white">白鹭</button>
+                         <button id="station4" name="station" type="button" class="btn btn-xs btn-white">梅林</button>
+                         <button id="station5" name="station" type="button" class="btn btn-xs btn-white">沙地</button>
+                     </div>
+                     <div class="box-tools pull-right">
+                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                     </div>
+                 </div>
+                 <div class="box-body" style="height: 200px">
+
+                     <div class="row">
+                         <div class="col-lg-2">
+                             <div class="ibox" style="margin-bottom:0px">
+                                 <div class="ibox-content">
+                                     <div style="text-align:left;margin-left: 20px"><img src="img/icon/airTemperature.icon" height="25" width="25">空气温度</div>
+                                     <div style="margin-top: 10px;margin-bottom: 10px;text-align: center"><span id="airTemperature" style="font-size: 15px;color: orangered"></span></div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-lg-2">
+                             <div class="ibox" style="margin-bottom:0px">
+                                 <div class="ibox-content">
+                                     <div style="text-align:left;margin-left: 20px"><img src="img/icon/airTemperature.icon" height="25" width="25">贴片温度</div>
+                                     <div style="margin-top: 10px;margin-bottom: -10px;text-align: center"><span id="patchTemperature" style="font-size: 15px;color: orangered"></span></div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-lg-2">
+                             <div class="ibox" style="margin-bottom:0px">
+                                 <div class="ibox-content">
+                                     <div style="text-align:left;margin-left: 20px"><img src="img/icon/irradiance.icon" height="25" width="25">辐照度</div>
+                                     <div style="margin-top: 10px;margin-bottom: -10px;text-align: center"><span id="irradiance" style="font-size: 15px;color: orangered"></span></div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-lg-2">
+                             <div class="ibox" style="margin-bottom:0px">
+                                 <div class="ibox-content">
+                                     <div style="text-align:left;margin-left: 20px"><img src="img/icon/windDirection.icon" height="25" width="25">风向</div>
+                                     <div style="margin-top: 10px;margin-bottom: -10px;text-align: center"><span id="windDirection" style="font-size: 15px;color: orangered"></span></div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-lg-2">
+                             <div class="ibox" style="margin-bottom:0px">
+                                 <div class="ibox-content">
+                                     <div style="text-align:left;margin-left: 20px"><img src="img/icon/windSpeed.icon" height="25" width="25">风速</div>
+                                     <div style="margin-top: 10px;margin-bottom: -10px;text-align: center"><span id="windSpeed" style="font-size: 15px;color: orangered"></span></div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+                 </div>&lt;!&ndash; /.box-body &ndash;&gt;
+             </div>&lt;!&ndash; /.box &ndash;&gt;
+         </div>
+     </div>-->
+  </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+</@body>
+<@footer>
+<script type="text/javascript" src="${request.contextPath}/pv/overview/overview.js"></script>
+<script type="text/javascript">
+    /*发电量统计*/
+
+
+
+</script>
+
+
+</@footer>

@@ -1,0 +1,64 @@
+
+# 注释加密 服务：xx.xx.xx.xx:10443
+#
+# 注释加密 TEmp890!@#
+# 注释加密 temp890!@#
+
+server:
+  port: 10443
+# 注释加密 servlet:
+# 注释加密 /gx/
+  tomcat:
+    uri-encoding: UTF-8
+#logging:
+# 注释加密 level:
+# 注释加密 com:
+# 注释加密 pv:
+# 注释加密 debug
+spring:
+  freemarker:
+    suffix: .html
+    request-context-attribute: request
+  application:
+    name: syslog
+# 资源信息
+  messages:
+     # 国际化资源文件路径
+     basename: static/i18n/messages
+  # 数据库相关配置
+  datasource:
+    name: syslog
+# 注释加密 :3306/syslog?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false&&zeroDateTimeBehavior=CONVERT_TO_NULL
+# 注释加密 root
+# 注释加密 temp890!@#
+# 注释加密 a
+    url: jdbc:mysql://xx.xx.xx.xx:3306/syslog?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false&&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: username    password: password    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 6000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+# pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+# 注释加密 别名配置
+mybatis-plus:
+  type-aliases-package: com.pv.modular.*.entity
+  mapper-locations: classpath:mapping/*/*.xml
+  #configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

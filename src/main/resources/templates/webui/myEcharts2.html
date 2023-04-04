@@ -1,0 +1,189 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+
+    <!--<head>-->
+        <!--<meta charset="utf-8">-->
+        <!--<title>第一个 ECharts 实例</title>-->
+        <!--&lt;!&ndash; 引入 echarts.js &ndash;&gt;-->
+        <!--<script src="/echarts/echarts.common.js"></script>-->
+        <!--<script src="/echarts/vintage.js"></script>-->
+        <!--&lt;!&ndash; 引入调用php-mysql的类库	&ndash;&gt;-->
+        <!--<script src="/echarts/jquery.min.js"></script>-->
+        <!--<style>-->
+            <!--.box {-->
+                <!--display: flex; /*盒子内“子盒子”悬浮并列*/-->
+                <!--justify-content: center;/*盒子内“子盒子”的x轴盒子居中*/-->
+                <!--align-items: center; /*盒子内“子盒子”的y轴盒子居中*/-->
+                <!--border:1px solid red;/*边框*/-->
+                <!--margin:40px auto;/*外部大盒子左右轴居中，距离上下40px */-->
+                <!--width: 99%;/*宽占浏览器窗口的99%*/-->
+                <!--height: 500px;-->
+            <!--}-->
+            <!--.box1 {-->
+                <!--background-color: yellow; /*背景颜色*/-->
+                <!--margin:10px;/*外边距*/-->
+                <!--width: 100px;-->
+                <!--height: 300px;-->
+            <!--}-->
+            <!--.box2 {-->
+                <!--/*background-color: red;*/-->
+                <!--margin:10px;-->
+                <!--width: 500px;-->
+                <!--height: 270px;-->
+            <!--}-->
+            <!--.box3 {-->
+                <!--background-color: red;-->
+                <!--margin:10px;-->
+                <!--width: 300px;-->
+                <!--height: 300px;-->
+            <!--}-->
+        <!--</style>-->
+
+    <!--</head>-->
+
+    <!--<body>-->
+
+        <!--&lt;!&ndash; 为ECharts准备一个具备大小（宽高）的Dom &ndash;&gt;-->
+        <!--<div class="box">-->
+            <!--<div class="box1" id="id1" >第一个盒子</div>-->
+            <!--<div class="box2" id="id2" >        </div>-->
+            <!--<div class="box3" id="id3" >第三个盒子</div>-->
+        <!--</div>-->
+
+    <!--</body>-->
+
+<!--</html>-->
+
+<!--&lt;!&ndash;<script type="text/javascript">&ndash;&gt;-->
+    <!--&lt;!&ndash;// 基于准备好的dom，初始化echarts实例&ndash;&gt;-->
+    <!--&lt;!&ndash;var myChart = echarts.init(document.getElementById('id1'),'vintage');&ndash;&gt;-->
+    <!--&lt;!&ndash;// 初始化两个数组，盛装从数据库中获取到的数据&ndash;&gt;-->
+    <!--&lt;!&ndash;var my_x=[], my_value=[];&ndash;&gt;-->
+    <!--&lt;!&ndash;function TestAjax(){&ndash;&gt;-->
+        <!--&lt;!&ndash;$.ajax({&ndash;&gt;-->
+            <!--&lt;!&ndash;type: "get",&ndash;&gt;-->
+            <!--&lt;!&ndash;async: false, // 注释加密 
+            <!--&lt;!&ndash;url: "/mysql/getData", // 注释加密 
+            <!--&lt;!&ndash;data: {},//发送给数据库的数据&ndash;&gt;-->
+            <!--&lt;!&ndash;dataType: "json", // 注释加密 
+            <!--&lt;!&ndash;success: function(result) {&ndash;&gt;-->
+                <!--&lt;!&ndash;if (result) {&ndash;&gt;-->
+                    <!--&lt;!&ndash;for (var i = 0; i < result.length; i++) {&ndash;&gt;-->
+                        <!--&lt;!&ndash;my_x.push(result[i].month); // 注释加密 
+                        <!--&lt;!&ndash;my_value.push(result[i].num);&ndash;&gt;-->
+                    <!--&lt;!&ndash;}&ndash;&gt;-->
+                <!--&lt;!&ndash;}&ndash;&gt;-->
+            <!--&lt;!&ndash;}&ndash;&gt;-->
+        <!--&lt;!&ndash;})&ndash;&gt;-->
+        <!--&lt;!&ndash;return my_x, my_value;&ndash;&gt;-->
+    <!--&lt;!&ndash;}&ndash;&gt;-->
+
+    <!--&lt;!&ndash;// 执行异步请求，请求php&ndash;&gt;-->
+    <!--&lt;!&ndash;TestAjax();&ndash;&gt;-->
+
+    <!--&lt;!&ndash;// 指定图表的配置项和数据&ndash;&gt;-->
+    <!--&lt;!&ndash;var option = {&ndash;&gt;-->
+
+        <!--&lt;!&ndash;title: { text: '第一个ECharts实例'},&ndash;&gt;-->
+        <!--&lt;!&ndash;tooltip: { }, // 注释加密 
+
+        <!--&lt;!&ndash;xAxis: { data: my_x }, // 注释加密 
+        <!--&lt;!&ndash;yAxis: { }, // 注释加密 
+
+        <!--&lt;!&ndash;legend: { data:['销量'] }, // 注释加密 
+        <!--&lt;!&ndash;series: [{ // 注释加密 
+            <!--&lt;!&ndash;name: '销量',&ndash;&gt;-->
+            <!--&lt;!&ndash;type: 'bar', // 注释加密 
+            <!--&lt;!&ndash;data: my_value // 注释加密 
+        <!--&lt;!&ndash;}]&ndash;&gt;-->
+    <!--&lt;!&ndash;};&ndash;&gt;-->
+
+    <!--&lt;!&ndash;// 使用刚指定的配置项和数据显示图表。&ndash;&gt;-->
+    <!--&lt;!&ndash;myChart.setOption(option);&ndash;&gt;-->
+<!--&lt;!&ndash;</script>&ndash;&gt;-->
+
+<!--<script type="text/javascript">-->
+    <!--// 基于准备好的dom，初始化echarts实例-->
+    <!--var myChart = echarts.init(document.getElementById('id2'),'vintage');-->
+    <!--// 初始化两个数组，盛装从数据库中获取到的数据-->
+    <!--var my_x=[], my_value=[];-->
+    <!--function TestAjax(){-->
+        <!--$.ajax({-->
+            <!--type: "get",-->
+            <!--async: false, // 注释加密 
+            <!--url: "/mysql/getData/hmt_visual_sysTypeGroup", // 注释加密 
+            <!--data: {},//发送给数据库的数据-->
+            <!--dataType: "json", // 注释加密 
+            <!--success: function(result) {-->
+                <!--if (result) {-->
+                    <!--for (var i = 0; i < result.length; i++) {-->
+                        <!--my_x.push(result[i].chinese); // 注释加密 
+                        <!--my_value.push(result[i].myvalue);-->
+                    <!--}-->
+                <!--}-->
+            <!--}-->
+        <!--})-->
+        <!--return my_x, my_value;-->
+    <!--}-->
+
+    <!--// 执行异步请求，请求php-->
+    <!--TestAjax();-->
+
+    <!--// 指定图表的配置项和数据-->
+    <!--var option = {-->
+
+        <!--title: {-->
+            <!--text: '近7天采集各类日志大小',-->
+            <!--top:'3%',-->
+            <!--left:'3%'-->
+        <!--},-->
+
+        <!--tooltip: { }, // 注释加密 
+
+        <!--grid: { // 注释加密 
+            <!--left: '2%',-->
+            <!--right: '15%',-->
+            <!--bottom: '5%',-->
+            <!--containLabel: true-->
+        <!--},-->
+
+        <!--xAxis: {-->
+            <!--type: 'category', // 注释加密 
+            <!--name:'日志类型',-->
+            <!--nameGap: 5,  // 注释加密 
+            <!--//nameLocation: "middle", // 注释加密 
+            <!--data: my_x,-->
+            <!--//max:2 // 注释加密 
+            <!--axisLabel: {-->
+                <!--interval: 0  // 注释加密 
+            <!--}-->
+        <!--},-->
+
+        <!--yAxis: {-->
+            <!--type: 'value',//代表值轴,不写也是可以的-->
+            <!--// name:'大小MB',-->
+            <!--// nameGap: 8,  // 注释加密 
+        <!--},-->
+
+        <!--legend: {-->
+            <!--data:['日志大小MB'],-->
+            <!--left:'48%', // 注释加密 
+            <!--top:'3%'-->
+
+        <!--},-->
+
+        <!--series: [{ // 注释加密 
+            <!--name: '日志大小MB',-->
+            <!--type: 'bar', // 注释加密 
+            <!--barWidth : 35,//柱图宽度-->
+            <!--data: my_value // 注释加密 
+        <!--}]-->
+    <!--};-->
+
+    <!--// 使用刚指定的配置项和数据显示图表。-->
+    <!--myChart.setOption(option);-->
+<!--</script>-->
+
+
+
+

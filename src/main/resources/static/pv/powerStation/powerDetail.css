@@ -1,0 +1,382 @@
+
+.textCenter {
+    text-align: center;
+    font-size: 12px;
+    line-height: 25px;
+}
+
+
+/**topLeft**/
+
+.topLeft {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    width: 300px;
+}
+
+.topLeft .space {
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.topLeft .videoContainer {
+    width: 100%;
+    flex: 1;
+    height: 300px;
+    overflow: hidden;
+}
+
+.video-js {
+    width: 100%;
+    height: 100%;
+}
+
+vjs-paused .vjs-big-play-button,
+.vjs-paused.vjs-has-started .vjs-big-play-button {
+    display: block;
+}
+
+
+.video-js .vjs-big-play-button{
+    font-size: 2.5em;
+    line-height: 2.3em;
+    height: 2.5em;
+    width: 2.5em;
+    -webkit-border-radius: 2.5em;
+    -moz-border-radius: 2.5em;
+    border-radius: 2.5em;
+    background-color: #73859f;
+    background-color: rgba(115,133,159,.5);
+    border-width: 0.15em;
+    margin-top: -1.25em;
+    margin-left: -1.75em;
+}
+/* 中间的播放箭头 */
+.vjs-big-play-button .vjs-icon-placeholder {
+    font-size: 1.63em;
+}
+/* 加载圆圈 */
+.vjs-loading-spinner {
+    font-size: 2.5em;
+    width: 2em;
+    height: 2em;
+    border-radius: 1em;
+    margin-top: -1em;
+    margin-left: -1.5em;
+}
+
+
+/**topLeft over**/
+
+.topMiddle {
+    flex: 6;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+}
+
+.energyInfoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.middleBottom {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.flowChartTop, .flowChartMiddle, .flowChartBottom {
+    flex: 1;
+}
+
+.flowChartTop, .flowChartBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0;
+    margin: 0
+}
+
+.imgContainer img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+}
+
+.imgContainer .triangle {
+    left: 50%;
+    margin-left: -5px;
+}
+
+.imgContainer .tooltips, .imgContainer .triangle {
+    top: 100%;
+    bottom: auto;
+    z-index: 1;
+    margin-top: 10px;
+}
+
+.imgContainer .triangle {
+    border-color: transparent transparent rgba(0, 0, 0, 0.5) transparent;
+    margin-top: -2px;
+}
+
+.imgContainer:hover .tooltips, .imgContainer:hover .triangle {
+    display: block;
+}
+
+.arrowRightLeft {
+    display: block;;
+    height: 30px;
+    width: 150px;
+    padding: 0;
+    margin: 0
+}
+
+.arrowLeft {
+    transform: rotate(180deg);
+}
+
+.flowChartMiddle {
+    display: flex;;
+    justify-content: flex-end;
+}
+
+.flowChartMiddle .arrowDown {
+    display: block;
+    height: 25px;
+    width: 120px;
+    transform: rotate(90deg);
+    position: absolute;
+    top: 35px;
+    right: -35px;
+}
+
+.arrowContainer {
+    position: relative;
+}
+
+.arrowContainer .dot {
+    width: 16px;
+    height: 16px;
+    background: #1ab394;
+    border-radius: 15px;
+    position: absolute;
+    left: 50%;
+    margin-left: -15px;
+    top: 6px;
+}
+
+.arrowContainer .dot .dotInner {
+    position: relative;
+}
+
+.tooltips {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    width: 150px;
+    text-align: center;
+    margin-left: -75px;
+    padding: 5px 0;
+    display: none;
+    line-height: 20px;
+    margin-bottom: 12px;
+}
+
+/*.triangle {
+    width: 0;
+    height: 0;
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.5) transparent transparent transparent;
+    position: absolute;
+    bottom: 100%;
+    left: 1px;
+    display: none;
+}*/
+
+.arrowContainer .dot:hover .tooltips, .arrowContainer .dot:hover .triangle {
+    display: block;
+}
+
+.flowChartMiddle .dot {
+    right: 27px;
+    top: 50%;
+    left: auto;
+    margin-top: -8px;
+}
+
+/**topRight**/
+
+.topRight {
+    flex: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width:260px;
+}
+
+.colorf8523c {
+    color: #f8523c;
+}
+
+.color666 {
+    color: #666;
+}
+
+.color999 {
+    color: #999;
+}
+
+.orange {
+    color: orange;
+}
+
+progress {
+    width: 95%;
+    height: 15px;
+    background-color: #fff;
+    color: #1ab394;
+    border: 1px solid #1ab394;
+    margin-top: 2px;
+}
+
+progress::-moz-progress-bar {
+    background: #1ab394;
+}
+
+progress::-webkit-progress-bar {
+    background: #fff;
+}
+
+progress::-webkit-progress-value {
+    background: #1ab394;
+}
+
+/**异常**/
+progress.abnormal {
+    color: #f8523c;
+    border: 1px solid #f8523c;
+}
+
+progress.abnormal::-moz-progress-bar {
+    background: #f8523c;
+}
+
+progress.abnormal::-webkit-progress-value {
+    background: #f8523c;
+}
+
+/**关机**/
+progress.down {
+    color: #666;
+    border: 1px solid #666;
+}
+
+progress.down::-moz-progress-bar {
+    background: #666;
+}
+
+progress.down::-webkit-progress-value {
+    background: #666;
+}
+
+/**未知**/
+progress.unknown {
+    color: #999;
+    border: 1px solid #999;
+}
+
+progress.unknown::-moz-progress-bar {
+    background: #999;
+}
+
+progress.unknown::-webkit-progress-value {
+    background: #999;
+}
+
+/**告警**/
+progress.warming {
+    color: orange;
+    border: 1px solid orange;
+}
+
+progress.warming::-moz-progress-bar {
+    background: orange;
+}
+
+progress.warming::-webkit-progress-value {
+    background: orange;
+}
+
+.topRight .each {
+    position: relative;
+}
+
+.topRight .each > p {
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+}
+
+.topRight .each .percent {
+    position: absolute;
+    left: 50%;
+    top: -12px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 3px 6px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    display: none;
+}
+
+.topRight .each:hover {
+    opacity: 0.6
+}
+
+.topRight .each:hover .percent {
+    display: block;
+}
+
+/**topRight over**/
+
+/**
+*
+* bottom
+**/
+
+.bottom {
+    flex: 2;
+    display: flex;
+    padding-top: 20px;
+}
+
+.bottomLeft,
+.bottomRight {
+    flex: 1;
+    height: 100%;
+}

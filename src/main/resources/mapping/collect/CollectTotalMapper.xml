@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pv.modular.collect.mapper.CollectTotalMapper">
+
+    <resultMap id="BaseResultMap" type="com.pv.modular.collect.entity.CollecctTotalBean">
+        <id column="id" property="id" />
+        <result column="fname" property="fname" />
+        <result column="fip" property="fip" />
+        <result column="ips" property="ips" />
+        <result column="fsize" property="fsize" />
+        <result column="fnum" property="fnum" />
+        <result column="sysType" property="sysType" />
+        <result column="proName" property="proName" />
+        <result column="departName" property="departName" />
+        <result column="cip" property="cip" />
+        <result column="createTime" property="createTime" />
+    </resultMap>
+
+
+
+    <select id="logList" resultMap="BaseResultMap">
+        SELECT lo.`fname` as fname,lo.`fip` as fip,soc.`ips` AS ips,lo.`fsize` as fsize,sum(lo.`fnum`) as fnum,soc.`sysType` AS sysType ,
+        soc.`proName` as proName,soc.`departName` as departName,lo.`sip` AS cip  ,lo.`createTime` as createTime
+        FROM (SELECT co.`sip` AS sip,co.`fname` AS fname,co.`fip` AS fip,co.`fsize` AS fsize,SUM(co.`fnum`) AS fnum,
+        co.`createTime` AS createTime FROM collect_log co WHERE 1=1 AND co.`fip` !=''
+        <if test='createTime!=null and createTime!=""'>
+            AND co.`createTime` = #{createTime}
+        </if>
+        <if test='ip!=null and ip!=""'>
+            AND co.`fip` = #{ip}
+        </if>
+        group by co.fip,co.createTime) lo INNER JOIN collect_soc soc ON soc.`ips` LIKE CONCAT(CONCAT('%',lo.`fip`),',%')
+        WHERE 1=1
+        <if test='search!=null and search!=""'>
+            AND soc.`departName` LIKE CONCAT(CONCAT('%',#{search}),'%')
+        </if>
+        GROUP BY departName,fip,ips,createTime order by createTime DESC
+    </select>
+
+
+    <select id="logAll" resultMap="BaseResultMap">
+        SELECT lo.`fname` as fname,lo.`fip` as fip,lo.`fsize` as fsize,sum(lo.`fnum`) as fnum,soc.`sysType` AS sysType ,
+        soc.`proName` as proName,soc.`departName` as departName,lo.`sip` AS cip  ,lo.`createTime` as createTime
+        FROM (SELECT co.`sip` AS sip,co.`fname` AS fname,co.`fip` AS fip,co.`fsize` AS fsize,SUM(co.`fnum`) AS fnum,
+        co.`createTime` AS createTime FROM collect_log co WHERE 1=1 AND co.`fip` !=''
+        group by co.fip) lo INNER JOIN collect_soc soc ON soc.`ips` LIKE CONCAT(CONCAT('%',lo.`fip`),',%')
+        WHERE 1=1
+        <if test='search!=null and search!=""'>
+            AND soc.`departName` LIKE CONCAT(CONCAT('%',#{search}),'%')
+        </if>
+        GROUP BY fip,createTime order by createTime DESC
+    </select>
+
+
+    <select id="totalPro" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM (SELECT COUNT(*) FROM collect_total where 1=1
+        <if test='departName!=null and departName!=""'>
+            AND collect_total.`departName` = #{departName}
+        </if>
+        GROUP BY proName ) AS tol
+    </select>
+
+    <select id="totalLine" resultType="java.lang.String">
+        SELECT SUM(fnum) FROM collect_total where 1=1
+        <if test='departName!=null and departName!=""'>
+            AND collect_total.`departName` = #{departName}
+        </if>
+    </select>
+
+</mapper>
